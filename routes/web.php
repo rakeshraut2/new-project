@@ -38,3 +38,13 @@ Route::get('/pricing','App\Http\controllers\UserController@pricing')->name('pric
 Route::get('/contact','App\Http\controllers\UserController@contact')->name('contact');
 
 
+Route::get('/blog','App\Http\controllers\UserController@blog')->name('blog');
+
+
+
+
+// adminroute
+Route::get('/admin/home','App\Http\controllers\AdminController@index')->name('admin.home');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

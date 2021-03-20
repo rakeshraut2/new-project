@@ -49,6 +49,14 @@ class UserController extends Controller
        return view('user.contact');
     }
 
+    public function blog()
+    {
+       return view('user.blog');
+    }
+
+   
+    
+
 
     /**
      * Show the form for creating a new resource.
