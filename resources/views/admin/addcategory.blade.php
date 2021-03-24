@@ -21,23 +21,18 @@
               <header class="panel-heading">
                Add Category Form
                
-    <section id="main-content">
-      <section class="wrapper">
-        <div class="row">
-          <div class="col-lg-12">
-            
-            <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
-              <li><i class="icon_document_alt"></i>Forms</li>
-              <li><i class="fa fa-files-o"></i>Add Category</li>
-            </ol>
-          </div>
-        </div>
-
+    
               </header>
               <div class="panel-body">
                 <div class="form">
-                  <form class="form-validate form-horizontal " id="register_form" method="post" action="">
+                  @if(Session::has('msg'))
+                  <div class="alert alert-success">
+                    {{Session::get('msg')}}
+                  </div>
+                  @endif
+                  <form class="form-validate form-horizontal " id="register_form" method="post" action="{{route('admin.storecategory')}}">
+                   @csrf
+
                     <div class="form-group ">
                       <label for="cname" class="control-label col-lg-2">Category Name <span class="required">*</span></label>
                       <div class="col-lg-10">

@@ -48,7 +48,11 @@ Route::get('/admin/home','App\Http\controllers\AdminController@index')->name('ad
 
 Route::get('/admin/addcategory','App\Http\controllers\AdminController@addcategory')->name('admin.addcategory');
 
+Route::post('/admin/storecategory','App\Http\controllers\AdminController@storecategory')->name('admin.storecategory');
+
 Route::get('/admin/addproduct','App\Http\controllers\AdminController@addproduct')->name('admin.addproduct');
+
+
 
 
 

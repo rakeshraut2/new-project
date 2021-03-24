@@ -272,9 +272,9 @@
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                                <img alt="" src="img/avatar1_small.jpg">
+                                <img alt="" src="./e-commerce/resources/view/IMG_15.jpg">
                             </span>
-                            <span class="adminname">{{Auth::user()->name}}</span>
+                            <span class="username">{{Auth::user()->name}}</span>
                             <b class="caret"></b>
                         </a>
             <ul class="dropdown-menu extended logout">
@@ -336,8 +336,8 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
-              <li><a class="" href="form_component.html">Add Product</a></li>
-              <li><a class="" href="form_validation.html">Form Category</a></li>
+              <li><a class="" href="{{route('admin.addproduct')}}">Add Product</a></li>
+              <li><a class="" href="{{route('admin.addcategory')}}">Form Category</a></li>
             </ul>
           </li>
           <li class="sub-menu">

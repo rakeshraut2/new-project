@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class AdminController extends Controller
 {
@@ -10,7 +11,14 @@ class AdminController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+
+
+
      */
+public function __construct(){
+    $this->middleware('auth:web');
+}
+
     public function index()
     {
         return view('admin.adminhome');
@@ -27,8 +35,23 @@ class AdminController extends Controller
 
      public function addproduct()
     {
-        return view('admin.addproduct');
+        $category=Category::orderBy('id','asc')->get();
+
+        return view('admin.addproduct',['category'=>$category]);
     }
+
+
+     public function storecategory(Request $request)
+    {
+        category::create([
+            'category_name'=>$request->get('cname')
+        ]);
+        
+        $request-> session()->flash('msg','category has been added successfully');
+        return redirect()->back();
+    }
+
+
 
 
 
