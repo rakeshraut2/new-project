@@ -52,11 +52,9 @@ Route::post('/admin/storecategory','App\Http\controllers\AdminController@storeca
 
 Route::get('/admin/addproduct','App\Http\controllers\AdminController@addproduct')->name('admin.addproduct');
 
+Route::post('/admin/storeproduct','App\Http\controllers\AdminController@storeproduct')->name('admin.storeproduct');
 
-
-
-
-
+Route::get('/admin/showproduct','App\Http\controllers\AdminController@showproduct')->name('admin.showproduct');
 
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 
 class AdminController extends Controller
 {
@@ -15,9 +16,9 @@ class AdminController extends Controller
 
 
      */
-public function __construct(){
+    public function __construct(){
     $this->middleware('auth:web');
-}
+    }
 
     public function index()
     {
@@ -38,17 +39,46 @@ public function __construct(){
         $category=Category::orderBy('id','asc')->get();
 
         return view('admin.addproduct',['category'=>$category]);
+        $request-> session()->flash('msg','category has been added successfully');
+        return redirect()->back();
     }
 
 
      public function storecategory(Request $request)
-    {
+    {   
         category::create([
             'category_name'=>$request->get('cname')
         ]);
-        
         $request-> session()->flash('msg','category has been added successfully');
         return redirect()->back();
+    }
+
+      public function storeproduct(Request $request)
+    {   
+        $image=null;
+        if($request->hasfile('image')){
+            $file=$request->file('image');
+            $image=mt_rand(10001,99999999).'_'.$file->getClientOriginalName();
+            $file->move('admin/upload/products/',$image);
+        }
+        
+        product::create([
+        'product_name'=>$request->get('pname'),
+        'product_price'=>$request->get('price'),
+        'product_quantity'=>$request->get('quantity'),
+        'product_description'=>$request->get('description'),
+        'product_image'=>$image,
+        'category_id'=>$request->get('category'),
+        ]);
+        $request-> session()->flash('msg','product has been added successfully');
+        return redirect()->back();
+        
+        
+    }
+
+    public function showproduct(){
+        $showproduct=Product::orderBy('id','desc')->get();
+        return view('admin.showproduct',['showproduct'=>$showproduct]);
     }
 
 
